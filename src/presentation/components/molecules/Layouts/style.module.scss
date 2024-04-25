@@ -1,0 +1,38 @@
+:global .layouts {
+  .layoutsMainContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+    .layoutsRowReverse {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: 64px;
+    }
+  }
+
+.layoutsMain {
+  .layoutsMainAbout {
+    .layoutsMainContentInfo {
+      background-color: rgb(255, 255, 255, 0.1);
+      display: flex;
+      gap: 8px;
+      border-radius: 32px;
+      padding: 4px;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 16px;
+      small:nth-child(1) {
+        background-color: white;
+        padding: 4px 12px;
+        border-radius: inherit;
+        color: black;
+        font-weight: 700;
+      }
+      small {
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+  }
+}

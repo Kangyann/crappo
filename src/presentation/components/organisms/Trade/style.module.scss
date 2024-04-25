@@ -1,0 +1,57 @@
+.tradeContainer {
+  height: 457px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .tradeText {
+    text-align: center;
+    h3 {
+      font-size: 40px;
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+}
+.tradeContent {
+  margin-top: 32px;
+  padding: 48px 0px;
+  color: black;
+  text-align: center;
+  h3 {
+    font-size: 40px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  // :global .card {
+  //   margin-top: 10em;
+  //   transition: all ease-in .3s;
+  //   &:hover {
+  //     background-color: rgba(43, 7, 110, 1);
+  //     color: white;
+  //     transform: translateY(-16px);
+  //     p {
+  //       color: white;
+  //     }
+  //   }
+  // }
+  .tradeContentBox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10em;
+    :global .card.active {
+      background-color: rgba(43, 7, 110, 1);
+      transform: translateY(-16px);
+      &,
+      p {
+        color: white;
+      }
+      sup {
+        color: rgb(255, 255, 255, 0.25);
+      }
+    }
+  }
+}

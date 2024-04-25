@@ -1,0 +1,19 @@
+.NavbarLink,
+.NavbarLinkItem {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 16px;
+  margin: 0;
+}
+.NavbarLinkItem:nth-child(1) {
+  margin-right: 36px;
+}
+.Navbar {
+  background-color: var(--primary);
+}
+.NavbarContent {
+    padding: 12px 0px;
+    display: flex;
+    justify-content: space-between;
+}

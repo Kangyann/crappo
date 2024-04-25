@@ -1,0 +1,69 @@
+:global .mining {
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(43, 7, 110, 1),
+    rgba(13, 13, 43, 1)
+  );
+  height: 392px;
+  display: flex;
+  align-items: center;
+}
+
+.background,
+.backgroundBox {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+.miningBox {
+  overflow: hidden;
+  background-color: rgba(54, 113, 233, 1);
+  border-radius: 12px;
+  width: 1200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  padding: 32px;
+  .miningBoxText {
+    flex: 1;
+    padding: 24px;
+    h3 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  .miningBoxInput {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    input {
+      flex: 1;
+      height: 24px;
+      background-color: transparent;
+      outline: none;
+      font-size: 16px;
+      border: none;
+      padding: 16px 6px;
+      color: white;
+      border-bottom: 1px solid white;
+      &::placeholder {
+        color: white;
+      }
+    }
+
+    a {
+      background-color: white !important;
+      margin: 0;
+      color: black;
+      font-weight: 700;
+    }
+  }
+}

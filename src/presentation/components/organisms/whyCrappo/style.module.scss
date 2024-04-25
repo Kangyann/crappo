@@ -1,0 +1,49 @@
+:global .whyCrappo {
+  background-color: var(--primary);
+  padding: 24px 0px;
+  position: relative;
+  height: 100vh;
+  z-index: 1;
+}
+.whyCrappoBackground {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+.whyCrappoTestimoni {
+  display: flex;
+  justify-content: space-between;
+  .whyCrappoItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    .whyCrappoItemIcon {
+      background-color: rgb(255, 255, 255, 0.1);
+      padding: 24px;
+      border-radius: 50px;
+    }
+    .whyCrappoItemText {
+      line-height: 0;
+      h3 {
+        font-size: 40px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+//
+:global .layouts {
+  .layoutsRowReverse {
+    height: 640px;
+    .title {
+      width: 80%;
+      font-size: 32px;
+    }
+    .description {
+        width: 80%;
+    }
+  }
+}

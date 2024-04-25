@@ -1,0 +1,32 @@
+:global .features {
+  background-color: rgba(43, 7, 110, 1);
+  padding: 24px 0px;
+}
+
+.featuresTitle {
+  font-size: 40px;
+  text-align: center;
+  width: 75%;
+  margin: 1em auto;
+}
+:global .layouts {
+  .featuresContent {
+    margin: 48px 0px;
+    padding: 16px 0px;
+    &.grow {
+        -webkit-line-clamp: 1;
+      .description {
+        width: 100%;
+      }
+    }
+    &.static {
+      gap: 0;
+      img {
+        transform: translateX(-21.5%);
+      }
+    }
+    .title {
+      font-size: 40px;
+    }
+  }
+}

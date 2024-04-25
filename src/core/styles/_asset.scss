@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  color: white;
+  font-style: normal;
+}
+
+.button {
+  background-color: #3671e9;
+  width: fit-content;
+  margin: 0;
+  padding: 14px 24px;
+  font-size: 16px;
+  border-radius: 32px;
+  gap: 16px;
+  cursor: pointer;
+  .arrow {
+      background-color: white;
+      color: #3671e9;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 100%;
+      margin-left: 16px;
+  }
+}

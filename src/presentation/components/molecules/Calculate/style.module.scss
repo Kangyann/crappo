@@ -1,0 +1,52 @@
+.calculateBox {
+  background-color: white;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  width: 942px;
+  box-shadow: 1px 1px 14px 1px rgb(0,0,0,.1);
+  margin: -12em auto 0 auto;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 16px;
+  .calculateInput {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin: 0;
+    gap: 16px;
+    font-size: 14px;
+    input {
+      flex: 1;
+    }
+    select {
+      flex: 0.3;
+    }
+    input,
+    select {
+      border: none;
+      border-bottom: 1px solid rgb(0, 0, 0, 0.15);
+      padding: 12px;
+    }
+    a {
+      margin: 0;
+      color: white;
+    }
+  }
+  .calculateRessultText {
+    h4,
+    p {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 32px;
+    }
+    span,
+    h4 {
+      color: rgba(54, 113, 233, 1);
+    }
+    p {
+        color :rgb(0,0,0,.5)
+    }
+  }
+}

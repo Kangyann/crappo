@@ -1,0 +1,25 @@
+
+:global .header {
+  padding: 24px 0px;
+  background-color: var(--primary);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.headlineIllustration {
+    width: 100%;
+    position: absolute;
+    bottom: -67.5px;
+    z-index: -1;
+}
+:global .layouts {
+    .title {
+      font-size: 64px;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 24px;
+      width: 67.5%;
+      margin-bottom: 4em;
+    }
+  }
