@@ -11,11 +11,18 @@ const Mining = () => {
   const [response, setResponse] = useState(null);
   const mailSubmit = async (e) => {
     e.preventDefault();
+
     let config = {
       url: ENDPOINT.SUBSCRIBE,
       method: "POST",
       data: {
         email: email,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, Accept",
       },
     };
     axios(config)
