@@ -25,16 +25,11 @@ const Mining = () => {
       .catch((error) => {
         setResponse(error);
       });
-    // const { data: response } = await RequestData(config);
     if (response) {
       console.log(response);
     }
   };
-  // const dataButton = {
-  //   text: "Subscribe",
-  //   to: "/",
-  // };
-  console.log(email);
+
   return (
     <>
       <div className="mining">
