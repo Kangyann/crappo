@@ -1,60 +1,78 @@
+
+// -- style module
 import style from "./style.module.scss";
-import growTableImage from "core/assets/image/grow-table.svg";
-import staticGraphImage from "core/assets/image/statistic-graph.svg";
+
+// -- assets & component
 import chartImage from "core/assets/image/chart_features.svg";
-import Layouts from "presentation/components/molecules/Layouts"
+import Layouts from "presentation/components/molecules/Layouts";
+
+// -- fetch data
+import RequestData from "core/hooks/useGetData";
+import ENDPOINT from "infrastructure/api/endPoint";
 
 const Features = () => {
-  const data = [
-    {
-      title: "Invest Smart",
-      description:
-        "Get full statistic information about the behaviour of buyers and sellers will help you to make the decision. ",
-      image: chartImage,
-      className: "featuresContent",
-      dataButton: {
-        name: "Learn More",
-        to: "/",
-      },
+  let config = {
+    invest: {
+      url: ENDPOINT.INVEST,
+      method: "GET",
     },
-    {
-      title: "Detailed Statistics",
-      description:
-        "View all mining related information in realtime, at any point at any location and decide which polls you want to mine in. ",
-      image: staticGraphImage,
-      className: "layoutsRowReverse featuresContent static",
-      dataButton: {
-        name: "Learn More",
-        to: "/",
-      },
+    statistics: {
+      url: ENDPOINT.STATISTICS,
+      method: "GET",
     },
-    {
-      title: "Grow your profit and track your investments",
-      description:
-        "Use advanced analytical tools. Clear TradingView charts let you track current and historical profit investments.",
-      image: growTableImage,
-      className: "featuresContent grow",
-      dataButton: {
-        name: "Learn More",
-        to: "/",
-      },
+    profit: {
+      url: ENDPOINT.PROFIT,
+      method: "GET",
     },
-  ];
+  };
+
+  const { data: invest } = RequestData(config.invest);
+  const { data: statistics } = RequestData(config.statistics);
+  const { data: profit } = RequestData(config.profit);
+
+  let transformData = null;
+
+  if (invest && statistics && profit) {
+    transformData = {
+      title: invest.data.title,
+      section: [
+        {
+          data: invest.data.section,
+          className: "featuresContent",
+        },
+        {
+          data: statistics.data,
+          className: "layoutsRowReverse featuresContent static",
+        },
+        {
+          data: profit.data,
+          className: "featuresContent grow",
+        },
+      ],
+    };
+
+    transformData.section[0].data.image = chartImage;
+  }
+
   return (
     <>
-      <div className="features">
-        <div className="container">
-          <div className={style.featuresTitle}>
-            <h3>
-              Market sentiments, portfolio, and run the infrastructure of your
-              choice
-            </h3>
+      {transformData && (
+        <div className="features">
+          <div className="container">
+            <div className={style.featuresTitle}>
+              <h3>{transformData.title}</h3>
+            </div>
+            {transformData.section.map((val, index) => (
+              <Layouts
+                {...val.data}
+                key={index}
+                dataButton={val.data.button}
+                className={val.className}
+              />
+            ))}
           </div>
-          {data.map((x,y)=> (
-              <Layouts {...x}></Layouts>
-          ))}
         </div>
-      </div>
+      )}
     </>
   );
 };

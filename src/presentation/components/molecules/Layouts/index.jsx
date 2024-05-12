@@ -1,3 +1,4 @@
+// -- assets & component
 import style from "./style.module.scss";
 import Button from "presentation/components/atoms/Button";
 
@@ -13,10 +14,10 @@ const Header = ({ dataButton, ...otherData }) => {
               }`}
             >
               <div className={style.layoutsMainAbout}>
-                {otherData.info && (
+                {otherData.label && (
                   <span className={style.layoutsMainContentInfo}>
-                    <small>75% SAVE</small>
-                    <small>For the Black Friday Weekend</small>
+                    <small>{otherData.label.badge}</small>
+                    <small>{otherData.label.description}</small>
                   </span>
                 )}
                 <h2 className="title">{otherData.title}</h2>

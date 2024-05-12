@@ -1,23 +1,21 @@
+// -- asset & component
 import style from "./style.module.scss";
 import Button from "presentation/components/atoms/Button";
 
 const Card = ({ data, ...otherData }) => {
-  const dataButton = {
-    name: "Start Mining",
-    to: "/",
-  };
-  console.log(data);
+  let active;
+  active = data.code === "BTC" ? active = "active" : active
   return (
     <>
-      <div className={`card ${otherData.className}`}>
-        <img src={data.icon} alt="" />
+      <div className={`card ${active}`} >
+        <img src={data.icon} alt={data.name} />
         <div className={style.cardText}>
           <h3 className="title">
-            {data.title} <sup>{data.alt}</sup>
+            {data.name} <sup>{data.code}</sup>
           </h3>
-          <p>{data.desc}</p>
+          <p>{data.description}</p>
           {data.button && (
-            <Button {...dataButton}>
+            <Button {...data.button}>
               <i className="fa-solid fa-chevron-right arrow"></i>
             </Button>
           )}

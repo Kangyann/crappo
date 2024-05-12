@@ -1,35 +1,46 @@
-import headlineImage from "core/assets/image/headline-illustration.svg";
-import headlineIllustration from "core/assets/image/headline-bg.svg";
+// module style
 import style from "./style.module.scss";
-import Navbar from "presentation/components/molecules/Navbar";
 
+// -- asset & component
+import headlineIllustration from "core/assets/image/headline-bg.svg";
 import Layouts from "presentation/components/molecules/Layouts";
+
+// -- fetch data
+import RequestData from "core/hooks/useGetData";
+import ENDPOINT from "infrastructure/api/endPoint";
+
 const Header = () => {
-  const dataButton = {
-    to: "/",
-    name: "Try for FREE",
+  let config = {
+    url: ENDPOINT.HERO_BANNER,
+    method: "GET",
   };
-  const data = {
-    title: "Fastest & secure platform to invest in crypto",
-    description:
-      "Buy and sell cryptocurrencies, trusted by 10M wallets with over $30 billion in transactions.",
-    image: headlineImage,
-    info: true,
-    btn_arrow: true,
-  };
+
+  const { data: header } = RequestData(config);
+  const transformData = [];
+  
+  if (header) {
+    transformData.push({
+      header: header.data[2],
+    });
+  }
   return (
     <>
-      <Navbar />
-      <div className="header">
-        <img
-          src={headlineIllustration}
-          alt=""
-          className={style.headlineIllustration}
-        />
-        <div className="container">
-          <Layouts dataButton={dataButton} {...data} />
+      {header && (
+        <div className="header">
+          <img
+            src={headlineIllustration}
+            alt=""
+            className={style.headlineIllustration}
+          />
+          <div className="container">
+            <Layouts
+              dataButton={transformData[0].header.button}
+              {...transformData[0].header}
+              btn_arrow={true}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 const createBrowserRoutes = ({data}) => {
-  console.log(data);
   return (
     <BrowserRouter>
       <Routes>

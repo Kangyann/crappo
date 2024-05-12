@@ -1,60 +1,58 @@
-import earthIcon from "core/assets/image/earth.svg";
-import userIcon from "core/assets/image/user.svg";
-import chartIcon from "core/assets/image/chart.svg";
-import Background from "core/assets/image/crappo-bg.svg";
-import crappoImage from "core/assets/image/whycrappo-illustration.svg";
+// -- style module
 import style from "./style.module.scss";
+
+// -- assets & component
+import Background from "core/assets/image/crappo-bg.svg";
 import Layouts from "presentation/components/molecules/Layouts";
 
+// -- fetch data
+import RequestData from "core/hooks/useGetData";
+import ENDPOINT from "infrastructure/api/endPoint";
+
 const whyCrappo = () => {
-  const data = {
-    title: "Why you should choose CRAPPO",
-    description:
-      "Experience the next generation cryptocurrency platform. No financial borders, extra fees, and fake reviews.",
-    image: crappoImage,
-    className : "layoutsRowReverse"
+  let config = {
+    number: {
+      url: ENDPOINT.NUMBERS,
+      method: "GET",
+    },
+    whyCrappo: {
+      url: ENDPOINT.WHY_CRAPPO,
+      method: "GET",
+    },
   };
-  const dataButton = {
-    to: "/",
-    name: "Learn More",
-  };
-  const numbersData = [
-    {
-      icon: chartIcon,
-      title: "$30B",
-      desc: "Digital Currency Exchanged",
-    },
-    {
-      icon: userIcon,
-      title: "10M+",
-      desc: "Trusted Wallets Investor",
-    },
-    {
-      icon: earthIcon,
-      title: "195",
-      desc: "Countries Supported",
-    },
-  ];
+
+  const { data: number } = RequestData(config.number);
+  const { data: whyCrappo } = RequestData(config.whyCrappo);
+
   return (
     <>
       <div className="whyCrappo">
         <img src={Background} alt="" className={style.whyCrappoBackground} />
         <div className="container">
           <div className={style.whyCrappoTestimoni}>
-            {numbersData.map((val, index) => (
-              <div className={style.whyCrappoItem}>
-                <div className={style.whyCrappoItemIcon}>
-                  <img src={val.icon} alt="" />
+            {number &&
+              number.data.map((val, index) => (
+                <div
+                  className={style.whyCrappoItem}
+                  key={`${val.icon_font}-${index}`}
+                >
+                  <div className={style.whyCrappoItemIcon}>
+                    <img src={val.icon_image} alt={val.icon_font} />
+                  </div>
+                  <div className={style.whyCrappoItemText}>
+                    <h3>{val.title}</h3>
+                    <p>{val.description}</p>
+                  </div>
                 </div>
-                <div className={style.whyCrappoItemText}>
-                  <h3>{val.title}</h3>
-                  <p>{val.desc}</p>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
-          {/*  */}
-          <Layouts dataButton={dataButton} {...data} />
+          {whyCrappo && (
+            <Layouts
+              dataButton={whyCrappo.data.button}
+              {...whyCrappo.data}
+              className={"layoutsRowReverse"}
+            />
+          )}
         </div>
       </div>
     </>

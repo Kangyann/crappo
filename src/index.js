@@ -1,25 +1,27 @@
 import "core/styles/app.scss";
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import BrowserRouter from './presentation/container/app';
-import Home from "./presentation/container/pages/Home"
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import BrowserRouter from "./presentation/container/app";
+import Home from "./presentation/container/pages/Home";
+import Testing from "presentation/container/pages/Testing";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const routes = [
   {
-    path: '/',
-    element: <Home/>
+    path: "/",
+    element: <Home />,
   },
   {
-    path: '/home',
-    element: <Home/>
-  }
-]
+    path: "/testing",
+    element: <Testing />,
+  },
+];
 root.render(
   <React.StrictMode>
-    <BrowserRouter data={routes}/>
+    <BrowserRouter data={routes} />
   </React.StrictMode>
 );
 

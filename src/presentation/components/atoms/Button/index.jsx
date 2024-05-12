@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Button = ({ children, ...button }) => {
+const Button = ({ children, ...button}) => {
 
   return (
     <>
       <Link className="button" to={button.to}>
-        {button.name}
+        {button.text}
         {children && children}
       </Link>
     </>

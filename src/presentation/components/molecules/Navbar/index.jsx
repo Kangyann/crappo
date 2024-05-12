@@ -1,46 +1,59 @@
+// -- core
 import { Link } from "react-router-dom";
-import icon from "core/assets/image/crappo.svg";
+
+// -- style module
 import style from "./style.module.scss";
+
+// -- components atoms
 import Button from "presentation/components/atoms/Button";
 
+// -- fetch data
+import RequestData from "core/hooks/useGetData";
+import ENDPOINT from "infrastructure/api/endPoint";
+
 const Navbar = () => {
-    const dataButton = {
-        to : '/',
-        name :"Register",
-    }
+  let config = {
+    url: ENDPOINT.HEADER,
+    method: "GET",
+  };
+
+  const { data: navbar } = RequestData(config);
+  
   return (
     <>
-      <div className={style.Navbar}>
-        <div className="container">
-          <div className={style.NavbarContent}>
-            <img src={icon} alt="" />
-            <div className={style.NavbarLink}>
-              <ul className={style.NavbarLinkItem}>
-                <li>
-                  <Link>Products</Link>
-                </li>
-                <li>
-                  <Link>Features</Link>
-                </li>
-                <li>
-                  <Link>About</Link>
-                </li>
-                <li>
-                  <Link>Contact</Link>
-                </li>
-              </ul>
-              <ul className={style.NavbarLinkItem}>
-                <li>
-                  <Link>Login</Link>
-                </li>
-                <li>
-                    <Button {...dataButton}/>
-                </li>
-              </ul>
+      {navbar && (
+        <div className={style.Navbar}>
+          <div className="container">
+            <div className={style.NavbarContent}>
+              <Link to={navbar.data.brand.to}>
+                <img
+                  src={navbar.data.brand.logo}
+                  alt={navbar.data.brand.name}
+                />
+              </Link>
+              <div className={style.NavbarLink}>
+                <ul className={style.NavbarLinkItem}>
+                  {navbar.data.main_menu.map((val, index) => (
+                    <>
+                      <li key={`${val.text}-${index}`}>
+                        <Link to={val.to}>{val.text}</Link>
+                      </li>
+                    </>
+                  ))}
+                </ul>
+                <ul className={style.NavbarLinkItem}>
+                  <li>
+                    <Link to={navbar.data.auth_menu[0].to}>{navbar.data.auth_menu[0].text}</Link>
+                  </li>
+                  <li>
+                    <Button {...navbar.data.auth_menu[1]} />
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

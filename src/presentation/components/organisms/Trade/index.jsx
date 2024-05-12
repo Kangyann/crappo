@@ -1,32 +1,22 @@
-import Calculate from "presentation/components/molecules/Calculate";
+// -- style module
 import style from "./style.module.scss";
+
+// -- components
+import Calculate from "presentation/components/molecules/Calculate";
 import Card from "presentation/components/molecules/Card";
-import icon from "core/assets/image/crypto_icon/";
+
+// -- fetch data
+import RequestData from "core/hooks/useGetData";
+import ENDPOINT from "infrastructure/api/endPoint";
 
 const Trade = () => {
-  const dataCryptoCurrencies = [
-    {
-      btc: {
-        icon: icon.bitcoin,
-        title: "Bitcoin",
-        alt: "BTC",
-        desc: "Digital currency in which a record of transactions is maintained.",
-        button: true,
-      },
-      eth: {
-        icon: icon.ethereum,
-        title: "Ethereum",
-        alt: "ETH",
-        desc: "Blockchain technology to create and run decentralized digital applications.",
-      },
-      ltc: {
-        icon: icon.litecoin,
-        title: "Litecoin",
-        alt: "LTC",
-        desc: "Cryptocurrency that enables instant payments to anyone in the world.",
-      },
-    },
-  ];
+  let config = {
+    url: ENDPOINT.CRYPTOCURRENCIES,
+    method: "GET",
+  };
+
+  const { data: cryptocurrencies } = RequestData(config);
+
   return (
     <>
       <div className="trade">
@@ -43,20 +33,18 @@ const Trade = () => {
           </div>
         </div>
         <Calculate />
-        <div className={style.tradeContent}>
-          <div className="container">
-            <h3>Trade securely and market the high growth cryptocurrencies.</h3>
-            <div className={style.tradeContentBox}>
-              {dataCryptoCurrencies.map((val, index) => (
-                <>
-                  <Card data={val.btc} key={`c-${index}`} className={"active"} />
-                  <Card data={val.eth} key={`c-${index}`} />
-                  <Card data={val.ltc} key={`c-${index}`} />
-                </>
-              ))}
+        {cryptocurrencies && (
+          <div className={style.tradeContent}>
+            <div className="container">
+              <h3>{cryptocurrencies.data.title}</h3>
+              <div className={style.tradeContentBox}>
+                {cryptocurrencies.data.list.map((val, index) => (
+                  <Card data={val} key={`${val.name}-${index}`} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
